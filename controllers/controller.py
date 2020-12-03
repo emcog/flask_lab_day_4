@@ -1,31 +1,19 @@
+from flask import render_template, request
 from app import app
-from modules.calculator import *
+from modules.event_list import add_new_event, events
+from modules.event import *
+
 
 @app.route('/')
 def index():
-    return "Hello, World!"
+    return render_template("index.html", title="Home", events=events)
 
-@app.route('/add/<num1>/<num2>')
-def add_my_num(num1, num2):
-    return f"the answer is {add(int(num1),int(num2))}"
-
-@app.route('/subtract/<num1>/<num2>')
-def subtract_my_num(num1, num2):
-    return f"the answer is {subtract(int(num1),int(num2))}"
-
-@app.route('/multiply/<num1>/<num2>')
-def multiply_my_num(num1, num2):
-    return f"the answer is {multiply(int(num1),int(num2))}"
-
-@app.route('/divide/<num1>/<num2>')
-def divide_my_num(num1, num2):
-    return f"the answer is {divide(int(num1),int(num2))}"
-
-
-
-
-
-   
-    
-
-
+@app.route('/add-event', methods=["POST"])
+def add_event():
+    return "Yipeee"
+    # print(request.form)
+    # event_title = request.form['title']
+    # event_desc = request.form['description']
+    # new_event = Event(event_title, event_desc)
+    # add_new_event(new_event)
+    # return render_template('index.html', title="Home", events=events)

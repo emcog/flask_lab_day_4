@@ -1,0 +1,25 @@
+{% extends "defaultlayout.html" %}
+
+{% block content %}
+<h1>My Social Life</h1>
+
+<form actions="/add-event" method="post">
+    <label for="name">Title</label>
+    <input type="text" name="name" id="name">
+    <input type ='date' id='date' name='event date'>
+    <input type='text' name='room'id='room'>
+    <input type="number" id="num_of_guests" name="num_of_guests"
+       min="1" max="100">
+    <label for="description">Description</label>
+    <textarea name="description" rows="2" cols="30"></textarea>
+    <input type="submit" value="Add Event">
+</form>
+
+<section>
+    <ul>
+        {% for event in events %}
+        <li>{{event.name}} <span>{{event.date}} {{event.room}} {{event.num_of_guests}}</span>  <p>{{event.description}}</p></li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}
